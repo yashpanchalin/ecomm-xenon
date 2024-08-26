@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<img width="1498" alt="Screenshot 2024-08-26 at 5 37 51 PM" src="https://github.com/user-attachments/assets/14ee577a-a669-4489-b69f-37c82f657e4f">
 
-## Getting Started
+Xenon - Multi Vendor E-commerce Web Application
 
-First, run the development server:
+Xenon is a feature-rich multi-vendor e-commerce web application designed to provide a seamless online shopping experience. It supports multiple vendors, allowing them to showcase their products on a unified platform, and offers customers a wide range of products to choose from.
 
-```bash
+Table of Contents
+Features
+Technologies Used
+Installation
+Usage
+Screenshots
+Folder Structure
+Contributing
+License
+Features
+Multi-Vendor Support: Multiple vendors can register, manage their products, and handle orders independently.
+Product Search: Users can search among thousands of products using a robust search functionality.
+Responsive Design: Fully responsive design ensures a smooth experience on all devices.
+Authentication: Secure login/signup options for customers, vendors, and admins.
+Wishlist & Cart: Customers can add products to their wishlist and cart for easy access later.
+Language Support: Multi-language support to cater to a global audience.
+Payment Integration: Integrated with popular payment gateways like Stripe or PayPal.
+Admin Dashboard: Admins can manage users, vendors, and products efficiently.
+Technologies Used
+Frontend: React.js, Next.js, Tailwind CSS
+Backend: Node.js, Express.js
+Database: MongoDB/PostgreSQL
+Authentication: JWT, OAuth
+Carousel Component: ShadCN with Embla Autoplay
+Deployment: Vercel/Netlify
+Installation
+Clone the Repository:
+
+
+git clone https://github.com/yourusername/xenon-ecommerce.git
+cd xenon-ecommerce
+Install Dependencies:
+npm install
+Set Up Environment Variables: Create a .env file in the root directory and add the following variables:
+
+makefile
+Copy code
+DATABASE_URL=your_database_url
+JWT_SECRET=your_jwt_secret
+Run the Development Server:
+
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Open in Browser: Navigate to http://localhost:3000 to view the application.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Usage
+- User Registration: Users can sign up and log in to start shopping.
