@@ -2,52 +2,83 @@
 
 Xenon - Multi Vendor E-commerce Web Application
 
-Xenon is a feature-rich multi-vendor e-commerce web application designed to provide a seamless online shopping experience. It supports multiple vendors, allowing them to showcase their products on a unified platform, and offers customers a wide range of products to choose from.
+Xenon is a comprehensive full-stack e-commerce application built using React, Next.js, Tailwind CSS, and Wix Headless CMS. The project is developed as part of a Next.js shopping app course, incorporating server actions and a headless CMS for content management.
+
 
 Table of Contents
-Features
-Technologies Used
-Installation
-Usage
-Screenshots
-Folder Structure
-Contributing
-License
-Features
-Multi-Vendor Support: Multiple vendors can register, manage their products, and handle orders independently.
-Product Search: Users can search among thousands of products using a robust search functionality.
-Responsive Design: Fully responsive design ensures a smooth experience on all devices.
-Authentication: Secure login/signup options for customers, vendors, and admins.
-Wishlist & Cart: Customers can add products to their wishlist and cart for easy access later.
-Language Support: Multi-language support to cater to a global audience.
-Payment Integration: Integrated with popular payment gateways like Stripe or PayPal.
-Admin Dashboard: Admins can manage users, vendors, and products efficiently.
+-Overview
+-Features
+-Technologies Used
+-Getting Started
+-Screenshots
+-Project Structure
+-Contributing
+-License
+
+Overview
+This e-commerce application provides a robust shopping experience with a modern UI. Built with React and Next.js for the frontend, the app leverages Tailwind CSS for styling and integrates with Wix Headless CMS for managing content. The app is designed to be scalable, responsive, and easy to customize for different types of online stores.
+
+Overview
+This e-commerce application provides a robust shopping experience with a modern UI. Built with React and Next.js for the frontend, the app leverages Tailwind CSS for styling and integrates with Wix Headless CMS for managing content. The app is designed to be scalable, responsive, and easy to customize for different types of online stores.
+
+
 Technologies Used
 Frontend: React.js, Next.js, Tailwind CSS
-Backend: Node.js, Express.js
-Database: MongoDB/PostgreSQL
-Authentication: JWT, OAuth
-Carousel Component: ShadCN with Embla Autoplay
+Backend: Next.js API Routes, Server Actions
+CMS: Wix Headless CMS
 Deployment: Vercel/Netlify
+
+Getting Started
+
+Prerequisites
+Ensure you have the following installed on your machine:
+-Node.js (>=14.x)
+-npm or yarn
+-A Wix Headless CMS account
+
 Installation
-Clone the Repository:
+1. Clone the Repository:
+  git clone https://github.com/yourusername/nextjs-ecommerce.git
+cd nextjs-ecommerce
+
+2. Install Dependencies:
+  npm install
+  # or
+  yarn install
+
+3. Set Up Environment Variables: Create a .env.local file in the root directory and add the following variables:
+  NEXT_PUBLIC_WIX_API_KEY=your_wix_api_key
+  NEXT_PUBLIC_WIX_SITE_ID=your_wix_site_id
+  NEXT_PUBLIC_JWT_SECRET=your_jwt_secret
+
+4. Run the Development Server:
+  npm run dev
+  # or
+  yarn dev
+
+5. Open in Browser: Navigate to http://localhost:3000 to view the application.
 
 
-git clone https://github.com/yourusername/xenon-ecommerce.git
-cd xenon-ecommerce
-Install Dependencies:
-npm install
-Set Up Environment Variables: Create a .env file in the root directory and add the following variables:
+Project Structure 
+.
+├── public            # Public assets
+├── src
+│   ├── app           # Next.js app directory
+│   ├── components    # Reusable React components
+│   ├── pages         # Next.js pages
+│   ├── styles        # Global and component-specific styles
+│   ├── utils         # Utility functions and helpers
+│   ├── wix           # Wix Headless CMS integration
+│   └── ...
+├── .env.local        # Environment variables
+├── package.json      # Project metadata and dependencies
+└── README.md         # Project documentation
 
-makefile
-Copy code
-DATABASE_URL=your_database_url
-JWT_SECRET=your_jwt_secret
-Run the Development Server:
+Contributing
+Contributions are welcome! Feel free to fork this repository, make changes, and submit a pull request. Ensure your changes are well documented and tested.
 
 
-npm run dev
-Open in Browser: Navigate to http://localhost:3000 to view the application.
+
 
 Usage
 - User Registration: Users can sign up and log in to start shopping.
