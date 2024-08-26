@@ -23,6 +23,7 @@ This e-commerce application provides a robust shopping experience with a modern 
 
 
 Technologies Used
+
 Frontend: React.js, Next.js, Tailwind CSS
 Backend: Next.js API Routes, Server Actions
 CMS: Wix Headless CMS
@@ -31,54 +32,50 @@ Deployment: Vercel/Netlify
 Getting Started
 
 Prerequisites
+
 Ensure you have the following installed on your machine:
 -Node.js (>=14.x)
 -npm or yarn
 -A Wix Headless CMS account
 
 Installation
+
 1. Clone the Repository:
   git clone https://github.com/yourusername/nextjs-ecommerce.git
 cd nextjs-ecommerce
-
 2. Install Dependencies:
   npm install
-  # or
+  or
   yarn install
-
-3. Set Up Environment Variables: Create a .env.local file in the root directory and add the following variables:
-  NEXT_PUBLIC_WIX_API_KEY=your_wix_api_key
-  NEXT_PUBLIC_WIX_SITE_ID=your_wix_site_id
-  NEXT_PUBLIC_JWT_SECRET=your_jwt_secret
-
-4. Run the Development Server:
+3. Set Up Environment Variables:
+   Create a .env.local file in the root directory and add the following variables:
+      NEXT_PUBLIC_WIX_API_KEY=your_wix_api_key
+      NEXT_PUBLIC_WIX_SITE_ID=your_wix_site_id
+      NEXT_PUBLIC_JWT_SECRET=your_jwt_secret
+5. Run the Development Server:
   npm run dev
-  # or
+  or
   yarn dev
-
-5. Open in Browser: Navigate to http://localhost:3000 to view the application.
+6. Open in Browser: Navigate to http://localhost:3000 to view the application.
 
 
 Project Structure 
-.
-├── public            # Public assets
-├── src
-│   ├── app           # Next.js app directory
-│   ├── components    # Reusable React components
-│   ├── pages         # Next.js pages
-│   ├── styles        # Global and component-specific styles
-│   ├── utils         # Utility functions and helpers
-│   ├── wix           # Wix Headless CMS integration
-│   └── ...
-├── .env.local        # Environment variables
-├── package.json      # Project metadata and dependencies
-└── README.md         # Project documentation
+  .
+  ├── public            # Public assets
+  ├── src
+  │   ├── app           # Next.js app directory
+  │   ├── components    # Reusable React components
+  │   ├── pages         # Next.js pages
+  │   ├── styles        # Global and component-specific styles
+  │   ├── utils         # Utility functions and helpers
+  │   ├── wix           # Wix Headless CMS integration
+  │   └── ...
+  ├── .env.local        # Environment variables
+  ├── package.json      # Project metadata and dependencies
+  └── README.md         # Project documentation
 
 Contributing
 Contributions are welcome! Feel free to fork this repository, make changes, and submit a pull request. Ensure your changes are well documented and tested.
-
-
-
 
 Usage
 - User Registration: Users can sign up and log in to start shopping.
