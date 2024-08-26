@@ -41,7 +41,7 @@ Ensure you have the following installed on your machine:
 Installation
 
 1. Clone the Repository:
-  git clone https://github.com/yourusername/nextjs-ecommerce.git
+  git clone (https://github.com/yashpanchalin/ecomm-xenon.git)
 cd nextjs-ecommerce
 2. Install Dependencies:
   npm install
