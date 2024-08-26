@@ -6,14 +6,14 @@ Xenon is a comprehensive full-stack e-commerce application built using React, Ne
 
 
 Table of Contents
--Overview
--Features
--Technologies Used
--Getting Started
--Screenshots
--Project Structure
--Contributing
--License
+  -Overview
+  -Features
+  -Technologies Used
+  -Getting Started
+  -Screenshots
+  -Project Structure
+  -Contributing
+  -License
 
 Overview
 This e-commerce application provides a robust shopping experience with a modern UI. Built with React and Next.js for the frontend, the app leverages Tailwind CSS for styling and integrates with Wix Headless CMS for managing content. The app is designed to be scalable, responsive, and easy to customize for different types of online stores.
