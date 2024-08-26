@@ -1,7 +1,13 @@
-const HomePage = () => {
-  return (
-    <div className=''>HomePage</div>
-  )
-}
+import FeaturedProductList from "@/components/FeaturedProductList";
+import HeroSlider from "@/components/HeroSlider";
+import ProductCategories from "@/components/ProductCategories";
 
-export default HomePage
+export default function HomePage() {
+  return (
+    <>
+      <HeroSlider />
+      <FeaturedProductList />
+      <ProductCategories />
+    </>
+  );
+}
