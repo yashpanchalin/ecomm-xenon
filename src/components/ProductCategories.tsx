@@ -98,7 +98,7 @@ export default function ProductCategories() {
     <>
       <div>
         <h1 className="text-3xl font-bold mb-8 text-center mt-10">
-          Featured Categories
+          Shop by Categories
         </h1>
         <Carousel
           plugins={[plugin.current]}
