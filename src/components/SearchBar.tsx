@@ -14,7 +14,7 @@ export default function SearchBar() {
     const name = formData.get("name") as string;
 
     if (name) {
-      router.push(`/search?q=${name}`);
+      router.push(`/${name}`);
     } else {
       console.error("No search query provided");
     }
