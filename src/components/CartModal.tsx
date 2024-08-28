@@ -128,7 +128,7 @@ export default function CartModal() {
                     {/* TODO Add Quantity functionality with backend logics*/}
                     {/* <div className="flex justify-between text-sm">
                       <span className="text-lg font-medium">Qty</span>
-                      {/* <Button
+                      <Button
                         className="w-8 h-8 text-lg font-bold rounded-r-none focus:outline-none"
                         onClick={decrement}
                       >
