@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 import { Poppins } from "next/font/google";
+import { WixClientContextProvider } from "@/context/wixContext";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -28,9 +29,11 @@ export default function RootLayout({
         className={inter.className}
         style={{ fontFamily: poppins.style.fontFamily }}
       >
-        <NavBar />
-        {children}
-        <Footer />
+        <WixClientContextProvider>
+          <NavBar />
+          {children}
+          <Footer />
+        </WixClientContextProvider>
       </body>
     </html>
   );
