@@ -27,6 +27,7 @@
     "cmdk": "^1.0.0",
     "embla-carousel-autoplay": "^8.2.0",
     "embla-carousel-react": "^8.2.0",
+    "isomorphic-dompurify": "^2.15.0",
     "js-cookie": "^3.0.5",
     "lucide": "^0.433.0",
     "lucide-react": "^0.435.0",
