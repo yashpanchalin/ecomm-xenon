@@ -8,9 +8,7 @@ export default async function HomePage() {
     <>
       <HeroSlider />
       <div className="mt-24">
-        <h1 className="text-3xl font-bold mb-8 text-center">
-          Featured Products
-        </h1>
+        <h1 className="text-3xl font-bold mb-8 px-6">Featured Products</h1>
         <Suspense fallback={"loading"}>
           <FeaturedProductList
             categoryId={process.env.WIX_FEATURE_PRODUCT_ID!}
