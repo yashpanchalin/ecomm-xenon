@@ -21,11 +21,7 @@ export default async function ProductCategories({
 }) {
   const wixClient = await wixClientServer();
 
-  const res = await wixClient.products
-    .queryProducts()
-    .eq("collectionIds", categoryId)
-    .limit(limit || 10)
-    .find();
+  const res = await wixClient.collections.queryCollections().find();
 
   console.log(res);
 
@@ -38,16 +34,18 @@ export default async function ProductCategories({
 
         <Carousel className="w-full mx-auto max-w-full">
           <CarouselContent className="-ml-1">
-            <CarouselItem className="pl-1 md:basis-1/2 lg:basis-1/3">
-              {res.items.map((product: products.Product) => (
-                <Link href={"/categories/" + product.slug} key={product._id}>
+            {res.items.map((item) => (
+              <CarouselItem
+                key={item._id}
+                className="pl-1 md:basis-1/2 lg:basis-1/3"
+              >
+                <Link href={`/categories?cat=${item.slug}`}>
                   <div className="pl-8">
                     <Card className="relative overflow-hidden flex items-center justify-center h-[250px] px-16">
                       <CardContent className="flex aspect-square items-center justify-center p-6">
                         <Image
                           src={
-                            product.media?.mainMedia?.image?.url ||
-                            "/product.png"
+                            item.media?.mainMedia?.image?.url || "/product.png"
                           }
                           alt=""
                           layout="fill"
@@ -57,10 +55,11 @@ export default async function ProductCategories({
                         />
                       </CardContent>
                     </Card>
+                    <h3 className="mt-2 font-semibold">{item.name}</h3>
                   </div>
                 </Link>
-              ))}
-            </CarouselItem>
+              </CarouselItem>
+            ))}
           </CarouselContent>
         </Carousel>
       </div>
