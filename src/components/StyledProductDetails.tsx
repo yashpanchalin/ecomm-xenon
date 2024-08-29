@@ -3,8 +3,9 @@ import { Truck, NotepadText } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { products } from "@wix/stores";
 
-const StyledProductDetails = () => {
+const StyledProductDetails = ({ categoryId }: { categoryId: string }) => {
   return (
     <div className="max-w-2xl mx-auto ">
       <div className="mb-6">
