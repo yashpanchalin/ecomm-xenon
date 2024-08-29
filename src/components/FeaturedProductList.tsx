@@ -17,9 +17,11 @@ import { products } from "@wix/stores";
 export default async function FeaturedProductList({
   categoryId,
   limit,
+  searchParams,
 }: {
   categoryId: string;
   limit: number;
+  searchParams?: any;
 }) {
   const wixClient = await wixClientServer();
   const res = await wixClient.products
@@ -27,8 +29,6 @@ export default async function FeaturedProductList({
     .eq("collectionIds", categoryId)
     .limit(limit || 10)
     .find();
-
-  console.log(res);
   return (
     <>
       <div className="container mx-auto px-4 py-8">
