@@ -4,26 +4,23 @@ import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
+import { usePathname, useSearchParams, useRouter } from "next/navigation";
 
 const sortBy = [
   {
-    value: "recommended",
+    value: "Recommended",
     label: "Recommended",
   },
   {
-    value: "what's new",
+    value: "what's-new",
     label: "What's New",
   },
   {
@@ -31,15 +28,19 @@ const sortBy = [
     label: "Popularity",
   },
   {
-    value: "better discount",
+    value: "better-discount",
     label: "Better Discount",
   },
   {
-    value: "price:high to low",
+    value: "price:high-to-low",
     label: "Price : High to Low",
   },
   {
-    value: "customer rating",
+    value: "price:low-to-high",
+    label: "Price : Low to High",
+  },
+  {
+    value: "customer-rating",
     label: "Customer Rating",
   },
 ];
@@ -104,7 +105,7 @@ const colors = [
 ];
 
 export default function Filter() {
-  const [isSortByOpen, setIsSortByOpen] = useState(false);
+  const [isSortByOpen, setIsSortByOpen] = useState<string>("Recommended");
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const [isColorOpen, setIsColorOpen] = useState(false);
@@ -112,215 +113,61 @@ export default function Filter() {
   const [filterValue, setFilterValue] = useState("");
   const [categoryValue, setCategoryValue] = useState("");
   const [colorValue, setColorValue] = useState("");
+
+  const pathName = usePathname();
+
+  const searchParams = useSearchParams();
+  const { replace } = useRouter();
+
+  const handleFilterChange = (value: string, name: string) => {
+    const params = new URLSearchParams(searchParams);
+    params.set(name, value);
+    replace(`${pathName}?${params.toString()}`);
+  };
+
+  const createDropdown = (
+    options: typeof sortBy | typeof filters | typeof categories | typeof colors,
+    value: string,
+    setValue: (value: string) => void,
+    name: string
+  ) => (
+    <DropdownMenu>
+      <DropdownMenuTrigger className="w-[160px] justify-between py-2 px-4 rounded-2xl text-xs font-medium bg-[#EBEDED]">
+        {name}:{" "}
+        {options.find((item) => item.value === value)?.label ||
+          options[0].label}
+      </DropdownMenuTrigger>
+      <DropdownMenuContent>
+        {options.map((item) => (
+          <DropdownMenuItem
+            key={item.value}
+            onClick={() => {
+              setValue(item.value);
+              handleFilterChange(item.value, name.toLowerCase());
+            }}
+          >
+            {item.label}
+            {value === item.value && <CheckIcon className="ml-auto h-4 w-4" />}
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+
   return (
-    <>
-      <div className="mt-12 flex justify-between">
-        <div className="flex gap-6 flex-wrap">
-          <div>
-            <Popover open={isSortByOpen} onOpenChange={setIsSortByOpen}>
-              <PopoverTrigger asChild>
-                <Button
-                  variant="outline"
-                  role="combobox"
-                  aria-expanded={isSortByOpen}
-                  className="w-[200px] justify-between"
-                >
-                  {sortByValue
-                    ? sortBy.find((sortBy) => sortBy.value === sortByValue)
-                        ?.label
-                    : `Sort by ${sortBy[0].label}`}
-                  <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-[200px] p-0">
-                <Command>
-                  <CommandList>
-                    <CommandEmpty>No sortBy found.</CommandEmpty>
-                    <CommandGroup>
-                      {sortBy.map((sortBy) => (
-                        <CommandItem
-                          key={sortBy.value}
-                          value={sortBy.value}
-                          onSelect={(currentValue) => {
-                            setSortByValue(
-                              currentValue === sortByValue ? "" : currentValue
-                            );
-                            setIsSortByOpen(false);
-                          }}
-                        >
-                          {sortBy.label}
-                          <CheckIcon
-                            className={cn(
-                              "ml-auto h-4 w-4",
-                              sortByValue === sortBy.value
-                                ? "opacity-100"
-                                : "opacity-0"
-                            )}
-                          />
-                        </CommandItem>
-                      ))}
-                    </CommandGroup>
-                  </CommandList>
-                </Command>
-              </PopoverContent>
-            </Popover>
-          </div>
-          <div>
-            <Popover open={isFilterOpen} onOpenChange={setIsFilterOpen}>
-              <PopoverTrigger asChild>
-                <Button
-                  variant="outline"
-                  role="combobox"
-                  aria-expanded={isFilterOpen}
-                  className="w-[100px] justify-between"
-                >
-                  {filterValue
-                    ? filters.find((filters) => filters.value === filterValue)
-                        ?.label
-                    : "Filter"}
-                  <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-[100px] p-0">
-                <Command>
-                  <CommandList>
-                    <CommandEmpty>No Filter found.</CommandEmpty>
-                    <CommandGroup>
-                      {filters.map((filters) => (
-                        <CommandItem
-                          key={filters.value}
-                          value={filters.value}
-                          onSelect={(currentValue) => {
-                            setFilterValue(
-                              currentValue === filterValue ? "" : currentValue
-                            );
-                            setIsFilterOpen(false);
-                          }}
-                        >
-                          {filters.label}
-                          <CheckIcon
-                            className={cn(
-                              "ml-auto h-4 w-4",
-                              filterValue === filters.value
-                                ? "opacity-100"
-                                : "opacity-0"
-                            )}
-                          />
-                        </CommandItem>
-                      ))}
-                    </CommandGroup>
-                  </CommandList>
-                </Command>
-              </PopoverContent>
-            </Popover>
-          </div>
-          <div>
-            <Popover open={isCategoryOpen} onOpenChange={setIsCategoryOpen}>
-              <PopoverTrigger asChild>
-                <Button
-                  variant="outline"
-                  role="combobox"
-                  aria-expanded={isCategoryOpen}
-                  className="w-[130px] justify-between"
-                >
-                  {categoryValue
-                    ? categories.find(
-                        (categories) => categories.value === categoryValue
-                      )?.label
-                    : "Categories"}
-                  <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-[160px] p-0">
-                <Command>
-                  <CommandList>
-                    <CommandEmpty>No Filter found.</CommandEmpty>
-                    <CommandGroup>
-                      {categories.map((categories) => (
-                        <CommandItem
-                          key={categories.value}
-                          value={categories.value}
-                          onSelect={(currentValue) => {
-                            setCategoryValue(
-                              currentValue === categoryValue ? "" : currentValue
-                            );
-                            setIsFilterOpen(false);
-                          }}
-                        >
-                          {categories.label}
-                          <CheckIcon
-                            className={cn(
-                              "ml-auto h-4 w-4",
-                              categoryValue === categories.value
-                                ? "opacity-100"
-                                : "opacity-0"
-                            )}
-                          />
-                        </CommandItem>
-                      ))}
-                    </CommandGroup>
-                  </CommandList>
-                </Command>
-              </PopoverContent>
-            </Popover>
-          </div>
-          <div>
-            <Popover open={isColorOpen} onOpenChange={setIsColorOpen}>
-              <PopoverTrigger asChild>
-                <Button
-                  variant="outline"
-                  role="combobox"
-                  aria-expanded={isCategoryOpen}
-                  className="w-[130px] justify-between"
-                >
-                  {colorValue
-                    ? colors.find((colors) => colors.value === colorValue)
-                        ?.label
-                    : "Colors"}
-                  <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-[160px] p-0">
-                <Command>
-                  <CommandList>
-                    <CommandEmpty>No Color found.</CommandEmpty>
-                    <CommandGroup>
-                      {colors.map((colors) => (
-                        <CommandItem
-                          key={colors.value}
-                          value={colors.value}
-                          onSelect={(currentValue) => {
-                            setColorValue(
-                              currentValue === colorValue ? "" : currentValue
-                            );
-                            setIsColorOpen(false);
-                          }}
-                        >
-                          <span className="flex items-center justify-between w-full">
-                            {colors.label}
-                            <span
-                              className="inline-block ml-2 h-4 w-4 rounded-full"
-                              style={{ backgroundColor: colors.hex }}
-                            ></span>
-                          </span>
-                          <CheckIcon
-                            className={cn(
-                              "ml-auto h-4 w-4",
-                              colorValue === colors.value
-                                ? "opacity-100"
-                                : "opacity-0"
-                            )}
-                          />
-                        </CommandItem>
-                      ))}
-                    </CommandGroup>
-                  </CommandList>
-                </Command>
-              </PopoverContent>
-            </Popover>
-          </div>
-        </div>
+    <div className="mt-12 flex justify-between">
+      <div className="flex gap-6 flex-wrap">
+        {createDropdown(sortBy, sortByValue, setSortByValue, "Sort by ")}
+
+        {createDropdown(filters, filterValue, setFilterValue, "Filter")}
+        {createDropdown(
+          categories,
+          categoryValue,
+          setCategoryValue,
+          "Category"
+        )}
+        {createDropdown(colors, colorValue, setColorValue, "Color")}
       </div>
-    </>
+    </div>
   );
 }
