@@ -42,7 +42,9 @@ export default async function CategoriePage({
         </div>
         <Filter />
         {/* PRODUCT */}
-        <h1 className="mt-12 text-xl font-semibold"> for you!</h1>
+        <h1 className="mt-12 text-xl font-semibold">
+          {category.collection?.name} for you!
+        </h1>
         <Suspense fallback={"loading"}>
           <FeaturedProductList
             categoryId={
