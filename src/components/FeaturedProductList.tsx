@@ -24,11 +24,28 @@ export default async function FeaturedProductList({
   searchParams?: any;
 }) {
   const wixClient = await wixClientServer();
-  const res = await wixClient.products
+  let productQuery = wixClient.products
     .queryProducts()
+    .startsWith("name", searchParams?.name || "")
+    .gt("priceData.price", searchParams?.min || 0)
+    .lt("priceData.price", searchParams?.max || 9999999)
     .eq("collectionIds", categoryId)
-    .limit(limit || 10)
-    .find();
+    .limit(limit || 10);
+  // .find();
+
+  if (searchParams?.sort) {
+    switch (searchParams.sort) {
+      case "price:low-to-high":
+        productQuery = productQuery.ascending("priceData.price");
+        break;
+      case "price:high-to-low":
+        productQuery = productQuery.descending("priceData.price");
+        break;
+      // Add other sorting options here if needed
+    }
+  }
+
+  const res = await productQuery.find();
   return (
     <>
       <div className="container mx-auto px-4 py-8">
